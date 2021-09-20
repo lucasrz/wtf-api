@@ -1,0 +1,31 @@
+services:
+  dev:
+    container_name: wtf-api
+    image: wtf-api:1.0.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    # networks:
+    #   - nesjs-network
+    # depends_on:
+    #   - mongodb
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    command: npm run start:dev
+#   mongodb:
+#     image: mongo:latest
+#     container_name: mongodb
+#     volumes:
+#       - ./database:/data/db
+#     ports:
+#       - 27017:27017
+#     networks:
+#       - nesjs-network
+#     restart: always
+# networks:
+#   nesjs-network:
+#     driver: bridge
